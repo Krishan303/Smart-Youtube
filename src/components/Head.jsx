@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addValue, toggleMenu } from "../utility/slices/appSlice";
 import { YOUTUBE_SUGGESTIONS_API } from "../utility/constants";
@@ -10,35 +10,33 @@ const Head = () => {
   const [suggestions, setSuggestions] = useState([]);
   const searchCache = useSelector((state) => state?.search);
 
-  useEffect(() => {
-    const debounce = setTimeout(() => {
-      if(searchCache[search]){
-        setSuggestions(searchCache[search]);
-      }else{
-      handleSuggestions();
-      }
-    }, 200);
-
-
-    return () => {
-      clearTimeout(debounce);
-    };
-  }, [search]);
-
-  
-  const handleSuggestions = async () => {
-    try{
+  const handleSuggestions = useCallback(async () => {
+  try {
     const data = await fetch(YOUTUBE_SUGGESTIONS_API + search);
     const jsonResponse = await data.json();
     setSuggestions(jsonResponse[1]);
     dispatch(chacheResult({
-      [search] : jsonResponse[1],
-    }))
-    console.log(suggestions)
-}catch(err){
-  console.error("Failed to fetch suggestions:", err);
-}
+      [search]: jsonResponse[1],
+    }));
+    console.log(jsonResponse[1]); 
+  } catch (err) {
+    console.error("Failed to fetch suggestions:", err);
+  }
+}, [search, dispatch]); 
+
+useEffect(() => {
+  const debounce = setTimeout(() => {
+    if (searchCache[search]) {
+      setSuggestions(searchCache[search]);
+    } else {
+      handleSuggestions();
+    }
+  }, 200);
+
+  return () => {
+    clearTimeout(debounce);
   };
+}, [search, searchCache, handleSuggestions]);
 
   return (
     <div className="grid grid-flow-col p-2 m-2 shadow">

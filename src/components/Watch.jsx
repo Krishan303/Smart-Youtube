@@ -1,16 +1,10 @@
-import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { closeMenu } from "../utility/slices/appSlice";
+import React from "react";
 import { useSearchParams } from "react-router-dom";
 import CommentsContainer from "./CommentsContainer";
 import LiveChat from "./LiveChat";
 
 const Watch = () => {
   const [searchParams] = useSearchParams();
-  //   const dispatch = useDispatch();
-  //   useEffect(() => {
-  //     dispatch(closeMenu());
-  //   }, []);
   const videoId = searchParams.get('v');
   console.log(videoId)
 

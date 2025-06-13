@@ -3,7 +3,6 @@ import { YOUTUBE_API } from '../utility/constants';
 import VideoCard from './VideoCard';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import CommentsContainer from './CommentsContainer';
 
 const VideoContainer = () => {
   const [videos, setVideos] = useState([]);
@@ -14,10 +13,10 @@ const VideoContainer = () => {
   },[]
 )
 
-useEffect(() => {
-  // console.log(selector);
+// useEffect(() => {
+//   // console.log(selector);
   
-},[selector])
+// },[selector])
 
   const getVideos = async() => {
     const data = await fetch(YOUTUBE_API);

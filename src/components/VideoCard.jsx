@@ -1,5 +1,4 @@
 import React from 'react'
-import CommentsContainer from './CommentsContainer';
 
 const VideoCard = ({info}) => {
     const {snippet, statistics} = info ?? {};
@@ -9,7 +8,7 @@ const VideoCard = ({info}) => {
   return (
     <div>
     <div className='w-72 m-2 rounded-lg'>
-        <img className=' rounded-lg' src={thumbnails?.high?.url}></img>
+        <img className=' rounded-lg' alt='thumbnail' src={thumbnails?.high?.url}></img>
         <ul>
             <li className='font-bold my-1'>{title}</li>
             <li className='font-light text-sm'>{channelTitle}</li>

@@ -18,7 +18,7 @@ const LiveChat = () => {
           message: "Hey, Krishan this side.",
         })
       );
-    }, 2000);
+    }, 2000); 
 
     return () => {
       clearInterval(polling);
@@ -44,6 +44,7 @@ const LiveChat = () => {
           ></input>
         <img
           src="https://static.vecteezy.com/system/resources/previews/045/983/772/non_2x/send-icon-submit-icon-arrow-icon-free-vector.jpg"
+          alt="arrow-icon"
           className="w-10 h-10"
           onClick={(e) => {dispatch(addMessage({name:"Krishan", message:chatByUser}));}}
         />
