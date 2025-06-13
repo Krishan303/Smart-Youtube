@@ -6,10 +6,8 @@ import store from './utility/store';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import MainContainer from './components/MainContainer';
 import Watch from './components/Watch';
-import { lazy } from 'react';
 
 function App() {
-  // const Watch = lazy(() => import("./components/Watch"));
 
   const appRouter =createBrowserRouter([{
     path: "/",
