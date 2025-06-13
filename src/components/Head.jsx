@@ -25,7 +25,9 @@ const Head = () => {
     };
   }, [search]);
 
+  
   const handleSuggestions = async () => {
+    try{
     const data = await fetch(YOUTUBE_SUGGESTIONS_API + search);
     const jsonResponse = await data.json();
     setSuggestions(jsonResponse[1]);
@@ -33,6 +35,9 @@ const Head = () => {
       [search] : jsonResponse[1],
     }))
     console.log(suggestions)
+}catch(err){
+  console.error("Failed to fetch suggestions:", err);
+}
   };
 
   return (
